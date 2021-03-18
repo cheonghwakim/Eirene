@@ -1,0 +1,5 @@
+com/ssafy/ttstest/MainActivity.java
+ com.ssafy.ttstest.MainActivity
+ com.ssafy.ttstest.MainActivity$1
+com/ssafy/ttstest/BuildConfig.java
+ com.ssafy.ttstest.BuildConfig
