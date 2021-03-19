@@ -51,13 +51,7 @@
 </details>
 <details>
 <summary>Scrum</summary>
-    <ul>
-        <a href=""><li>3월 1주차</li></a>
-        <a href=""><li>3월 2주차</li></a>
-    <a href=""><li>3월 3주차</li></a>
-        <a href=""><li>3월4주차</li></a>
-        <a href=""><li>3월 5주차</li></a>
-    </ul>
+    [스크럼페이지](https://www.notion.so/032f47a64af643cba01edfe24a71b718?v=e42bfeeb73ea41a1a53c8ca7e761167a)
 </details>
 <details>
 <summary>Project Proposal and WireFrame</summary>
