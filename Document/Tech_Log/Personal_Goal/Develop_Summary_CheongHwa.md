@@ -71,7 +71,7 @@ CuDNN 버전, pytorch 버전, cuda 버전을 맞춰야 함
 
 
 
-## 2021-03-11
+### 2021-03-12
 
 ```
 logging 사용하기
@@ -147,9 +147,69 @@ self는 객체의 인스턴스 그 자체를 말한다.
 
 
 
+### 2021-03-15
+
+```
+STT, TTS는 안드로이드에서 바로 구현하기
+```
 
 
 
+### 2021-03-16
+
+```
+1. VR에서 멀티버스 구현하기
+
+PUN(Photon Unity Networking) : 멀티플레이어 게임용 유니티 패키지 사용
+```
+
+```
+2. 모션 인식
+
+tensorflow.js / https://github.com/iconms12/Image_Captioning (pythorch 이미지 캡셔닝)
+YOLO / 모션 인식 API 등 자료 조사 필요
+```
 
 
+
+### 2021-03-17
+
+ec2에 nginx 설치하고 html 배포하기
+
+```
+$ sudo apt-get update
+$ sudo apt-get install nginx
+```
+
+sites-available로 가서 default 파일을 수정한다.
+
+```
+$ cd /etc/nginx/sites-available
+```
+
+default
+
+root /home/ubuntu/s04p22a401/Web/eriene; (index.html 이 있는 위치) 로 수정 후 nginx 시작
+
+```
+$ systemctl start nginx
+```
+
+주소로 들어가서 잘 나오는지 확인
+
+```
+http://j4a401.p.ssafy.io/
+```
+
+
+
+### 2021-03-18
+
+```
+photon unity network 사용준비
+
+- 유니티 2019.04 (LTS 버전 다운) -> Unity Hub: 유니티 버전 관리를 쉽게 해주는 툴
+  (모듈 추가 Android Build Support, iOS Build Support, WebGL Build Support, 		Windows Build Support, 한국어)
+- unity asset store에서 photon 추가
+```
 
