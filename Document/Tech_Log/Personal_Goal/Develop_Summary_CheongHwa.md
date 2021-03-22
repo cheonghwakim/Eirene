@@ -208,7 +208,8 @@ http://j4a401.p.ssafy.io/
 ```
 photon unity network 사용준비
 
-- 유니티 2019.04 (LTS 버전 다운)
+- 유니티 2019.04 (LTS 버전 다운) -> Unity Hub: 유니티 버전 관리를 쉽게 해주는 툴
+  (모듈 추가 Android Build Support, iOS Build Support, WebGL Build Support, 		Windows Build Support, 한국어)
 - unity asset store에서 photon 추가
 ```
 
