@@ -7,6 +7,8 @@
   <title>Document</title>
 </head>
 <body>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+
     <div>Teachable Machine Pose Model</div>
     <button type="button" onclick="init()">Start</button>
     <div><canvas id="canvas"></canvas></div>
@@ -32,7 +34,7 @@
             maxPredictions = model.getTotalClasses();
 
             // Convenience function to setup a webcam
-            const size = 500;
+            const size = 300;
             const flip = true; // whether to flip the webcam
             webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
             await webcam.setup(); // request access to the webcam
@@ -64,30 +66,43 @@
             const prediction = await model.predict(posenetOutput);
             if(prediction[0].probability.toFixed(2) == 1.00) {
                 status = "stand"
+                savedata(status);
             } else if(prediction[1].probability.toFixed(2) == 1.00) {
                 status = "view_left"
+                savedata(status);
             } else if(prediction[2].probability.toFixed(2) == 1.00) {
                 status = "view_right"
+                savedata(status);
             } else if(prediction[3].probability.toFixed(2) == 1.00) {
                 status = "clap"
+                savedata(status);
             } else if(prediction[4].probability.toFixed(2) == 1.00) {
                 status = "hurry"
+                savedata(status);
             } else if(prediction[5].probability.toFixed(2) == 1.00) {
                 status = "rowing"
+                savedata(status);
             } else if(prediction[6].probability.toFixed(2) == 1.00) {
                 status = "hand"
+                savedata(status);
             } else if(prediction[7].probability.toFixed(2) == 1.00) {
                 status = "hand"
+                savedata(status);
             } else if(prediction[8].probability.toFixed(2) == 1.00) {
                 status = "say_hi"
+                savedata(status);
             } else if(prediction[9].probability.toFixed(2) == 1.00) {
                 status = "say_hi"
+                savedata(status);
+            } else {
+                status = "standard"
+                savedata(status)
             }
-            // for (let i = 0; i < maxPredictions; i++) {
-            //     const classPrediction =
-            //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-            //     labelContainer.childNodes[i].innerHTML = classPrediction;
-            // }
+            for (let i = 0; i < maxPredictions; i++) {
+                const classPrediction =
+                    prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                labelContainer.childNodes[i].innerHTML = classPrediction;
+            }
 
             // finally draw the poses
             drawPose(pose);
@@ -107,3 +122,53 @@
     </script>
 </body>
 </html>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyCY0EWKeOW4N54TY0eI7URhW737sLGad5Q",
+        authDomain: "unity-pong-sample-backen-53e9a.firebaseapp.com",
+        databaseURL: "https://unity-pong-sample-backen-53e9a-default-rtdb.firebaseio.com",
+        projectId: "unity-pong-sample-backen-53e9a",
+        storageBucket: "unity-pong-sample-backen-53e9a.appspot.com",
+        messagingSenderId: "1071775963425",
+        appId: "1:1071775963425:web:ca604a16e080075d6e4660",
+        measurementId: "G-6VW8DESQZ9"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    // Get elements
+    const messageField = document.getElementById('status');
+
+    // Get a reference to the database service
+    var database = firebase.database();
+
+    // 고유 아이디 만들기
+    function guid() {
+            function s4() {
+            return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+            }
+            return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+        }
+
+    // 저장
+    function savedata(status) {
+        // let uuid = guid();
+        let message = messageField;
+        if (message != "standard") {
+            database.ref('message/').set({
+                text: status
+            });
+        }
+    }
+</script>
