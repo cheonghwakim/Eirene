@@ -7,6 +7,23 @@
   <title>Document</title>
 </head>
 <body>
+    <div class="container">
+        <input type="email" id="txtEmail" placeholder="Email">
+
+        <input type="password" id="txtPassword" placeholder="Password">
+
+        <button id="btnLogin" class="btn btn-action">
+            Log in
+        </button>
+
+        <button id="btnSignUp" class="btn btn-secondary">
+            Sign Up
+        </button>
+
+        <button id="btnLogout" class="btn btn-action hide">
+            Log out
+        </button>
+    </div>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
 
     <div>Teachable Machine Pose Model</div>
@@ -148,27 +165,56 @@
     firebase.analytics();
 
     // Get elements
+    const txtEmail = document.getElementById('txtEmail');
+    const txtPassword = document.getElementById('txtPassword');
+    const btnLogin = document.getElementById('btnLogin');
+    const btnSignUp = document.getElementById('btnSignUp');
+    const btnLogout = document.getElementById('btnLogout');
     const messageField = document.getElementById('status');
 
     // Get a reference to the database service
     var database = firebase.database();
 
-    // 고유 아이디 만들기
-    function guid() {
-            function s4() {
-            return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
-            }
-            return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    btnLogin.addEventListener('click', e => {
+        const email = txtEmail.value;
+        const pass = txtPassword.value;
+        const auth = firebase.auth();
+
+        const promise = auth.signInWithEmailAndPassword(email, pass);
+
+        promise.catch(e => console.log(e.message));
+    });
+
+    btnSignUp.addEventListener('click', e => {
+        const email = txtEmail.value;
+        const pass = txtPassword.value;
+        const auth = firebase.auth();
+
+        const promise = auth.createUserWithEmailAndPassword(email, pass);
+
+        promise.catch(e => console.log(e.message));
+    });
+
+    btnLogout.addEventListener('click', e => {
+        firebase.auth().signOut();
+    })
+
+    let account = ''
+
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+        if(firebaseUser) {
+            console.log(firebaseUser);
+            account = firebaseUser.email.split('@')[0];
+        } else {
+            console.log('not logged in');
         }
+    })
 
     // 저장
     function savedata(status) {
-        // let uuid = guid();
         let message = messageField;
         if (message != "standard") {
-            database.ref('message/').set({
-                text: status
-            });
+            database.ref('message/' + account).set({status});
         }
     }
 </script>
