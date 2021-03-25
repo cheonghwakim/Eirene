@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class YellowFadeIn : MonoBehaviour
 {
     public Image _Image;
-    public Canvas first_canvas;
+    public GameObject first_canvas;
 
     Color blackColor = Color.black;
     Color offColor = Color.clear;
@@ -79,7 +79,8 @@ public class YellowFadeIn : MonoBehaviour
         if (targetColor == Color.clear)
         {
             _Image.enabled = false;
-            Destroy(first_canvas);
+            first_canvas.SetActive(false);
+            // Destroy(first_canvas);
             Debug.Log("진자 끝");
         }
 
