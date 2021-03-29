@@ -28,7 +28,6 @@ public class GoColorWorld : MonoBehaviour
 
     public void ClickObject()
     {
-        Debug.Log(textColor.tag);
         // SceneManager.LoadScene(nextScene);
         LoadingSceneManager.LoadScene(nextScene);
     }

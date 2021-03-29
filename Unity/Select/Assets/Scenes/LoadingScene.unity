@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c5df09d415be24a9fb5d38ec7c62ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backImage: {fileID: 2022306023}
   progressBar: {fileID: 353621919}
 --- !u!114 &531585279
 MonoBehaviour:

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LoadingSceneManager : MonoBehaviour
 {
     public static string nextScene;
+    public GameObject backImage;
 
     public static void LoadScene(string sceneName)
     {
@@ -20,7 +21,20 @@ public class LoadingSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(LoadSceneProcess());  
+        StartCoroutine(LoadSceneProcess());
+        if (nextScene == "Indigo")
+        {
+            backImage.GetComponent<Image>().sprite = Resources.Load("images/Indigo", typeof(Sprite)) as Sprite;
+        }
+        else if (nextScene == "Yellow")
+        {
+            backImage.GetComponent<Image>().sprite = Resources.Load("images/Yellow", typeof(Sprite)) as Sprite;
+        }
+        else
+        {
+            backImage.GetComponent<Image>().sprite = Resources.Load("images/Eirene", typeof(Sprite)) as Sprite;
+        }
+        
     }
 
     
@@ -28,7 +42,6 @@ public class LoadingSceneManager : MonoBehaviour
     IEnumerator LoadSceneProcess()
     {
         yield return null;
-        Debug.Log("되고 있냐 ?");
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
 

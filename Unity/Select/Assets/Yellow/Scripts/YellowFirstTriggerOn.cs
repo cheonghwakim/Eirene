@@ -11,7 +11,6 @@ public class YellowFirstTriggerOn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // firstCollider2 = firstCandle.GetComponent<MeshCollider>();
         firstCollider = firstCandle.GetComponent<MeshCollider>();
         firstCollider2 = firstCandle2.GetComponent<MeshCollider>();
     }
@@ -26,6 +25,5 @@ public class YellowFirstTriggerOn : MonoBehaviour
     {
         firstCollider.enabled = true;
         firstCollider2.enabled = true;
-        Debug.Log(firstCollider);
     }
 }
