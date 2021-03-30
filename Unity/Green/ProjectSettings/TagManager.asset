@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Standinglight
   - Teleport
+  - Mushroom
   layers:
   - Default
   - TransparentFX
