@@ -23,12 +23,12 @@ public class GoColorWorld : MonoBehaviour
 
     public void LoadScene()
     {
-        SceneManager.LoadScene(nextScene);
+        // SceneManager.LoadScene(nextScene);
     }
 
     public void ClickObject()
     {
-        Debug.Log(textColor.tag);
-        SceneManager.LoadScene(nextScene);
+        // SceneManager.LoadScene(nextScene);
+        LoadingSceneManager.LoadScene(nextScene);
     }
 }
