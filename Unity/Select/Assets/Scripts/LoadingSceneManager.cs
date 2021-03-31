@@ -7,15 +7,7 @@ using UnityEngine.SceneManagement;
 public class LoadingSceneManager : MonoBehaviour
 {
     public static string nextScene;
-
-    [SerializeField]
-    Image progressBar;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(LoadScene());  
-    }
+    public GameObject backImage;
 
     public static void LoadScene(string sceneName)
     {
@@ -23,10 +15,33 @@ public class LoadingSceneManager : MonoBehaviour
         SceneManager.LoadScene("LoadingScene");
     }
 
-    IEnumerator LoadScene()
+    [SerializeField]
+    Image progressBar;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        StartCoroutine(LoadSceneProcess());
+        if (nextScene == "Indigo")
+        {
+            backImage.GetComponent<Image>().sprite = Resources.Load("images/Indigo", typeof(Sprite)) as Sprite;
+        }
+        else if (nextScene == "Yellow")
+        {
+            backImage.GetComponent<Image>().sprite = Resources.Load("images/Yellow", typeof(Sprite)) as Sprite;
+        }
+        else
+        {
+            backImage.GetComponent<Image>().sprite = Resources.Load("images/Eirene", typeof(Sprite)) as Sprite;
+        }
+        
+    }
+
+    
+
+    IEnumerator LoadSceneProcess()
     {
         yield return null;
-
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
 
@@ -35,21 +50,16 @@ public class LoadingSceneManager : MonoBehaviour
         {
             yield return null;
 
-            timer += Time.deltaTime;
-
             if (op.progress < 0.9f)
             {
-                progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, op.progress, timer);
-                if (progressBar.fillAmount >= op.progress)
-                {
-                    timer += 0f;
-                }
+                progressBar.fillAmount = op.progress;
             }
             else
             {
-                progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
+                timer += Time.unscaledDeltaTime;
+                progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
 
-                if (progressBar.fillAmount == 1.0f)
+                if (progressBar.fillAmount >= 1.0f)
                 {
                     op.allowSceneActivation = true;
                     yield break;

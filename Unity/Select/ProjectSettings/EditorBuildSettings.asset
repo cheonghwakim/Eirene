@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/1_SelectStage.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: 9a1b119d9f18d8240967e8ece9e60085
+  - enabled: 1
     path: Assets/Scenes/Indigo.unity
     guid: e05cbb2af2127b047a5ca2fe07fe9c21
+  - enabled: 1
+    path: Assets/Scenes/Purple.unity
+    guid: 1f5570dcc90cec6438031541a39ac514
+  - enabled: 1
+    path: Assets/Scenes/Yellow.unity
+    guid: fad526115a2044e4f9ac28b8f5b573ba
   m_configObjects: {}

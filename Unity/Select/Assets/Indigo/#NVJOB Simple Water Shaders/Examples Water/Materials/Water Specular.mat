@@ -110,7 +110,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _NormalMap1:
         m_Texture: {fileID: 2800000, guid: caecb7663e614c0e8d1cf595085ee759, type: 3}
-        m_Scale: {x: 80, y: 80}
+        m_Scale: {x: 40, y: 40}
         m_Offset: {x: 0, y: 0}
     - _NormalMap2:
         m_Texture: {fileID: 2800000, guid: 0402941ce4e74e24abb686de97205888, type: 3}
@@ -203,8 +203,8 @@ Material:
     - _Radius: 1
     - _Reflect: 1
     - _ReflectionContrast: 1.1
-    - _ReflectionSaturation: 0.5
-    - _ReflectionStrength: 1.7
+    - _ReflectionSaturation: 3.74
+    - _ReflectionStrength: 3.2
     - _RefractionIntensity: 0.61
     - _RefractionSpeed: 1.61
     - _ReverseFlow: -5
