@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Drone Photography</title>
+    <title>Eirene</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -243,17 +243,19 @@
 <script>
     // Your web app's Firebase configuration
     let firebaseConfig = {
-        apiKey: "AIzaSyDJatNogF2HwyjxATiuuJ36ZW57tZhs5i8",
-        authDomain: "eriene-test.firebaseapp.com",
-        projectId: "eriene-test",
-        storageBucket: "eriene-test.appspot.com",
-        messagingSenderId: "112513499281",
-        appId: "1:112513499281:web:1f1477cca4748e9f333f30"
+        apiKey: "AIzaSyCY0EWKeOW4N54TY0eI7URhW737sLGad5Q",
+        authDomain: "unity-pong-sample-backen-53e9a.firebaseapp.com",
+        databaseURL: "https://unity-pong-sample-backen-53e9a-default-rtdb.firebaseio.com",
+        projectId: "unity-pong-sample-backen-53e9a",
+        storageBucket: "unity-pong-sample-backen-53e9a.appspot.com",
+        messagingSenderId: "1071775963425",
+        appId: "1:1071775963425:web:ca604a16e080075d6e4660",
+        measurementId: "G-6VW8DESQZ9"
     };
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-
+    firebase.analytics();
     // Get elements
     const txtEmail = document.getElementById('txtEmail');
     const txtPassword = document.getElementById('txtPassword');
