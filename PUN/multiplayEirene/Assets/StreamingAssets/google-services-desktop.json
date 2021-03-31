@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1071775963425",
+    "firebase_url": "https://unity-pong-sample-backen-53e9a-default-rtdb.firebaseio.com/",
     "project_id": "unity-pong-sample-backen-53e9a",
     "storage_bucket": "unity-pong-sample-backen-53e9a.appspot.com"
   },
