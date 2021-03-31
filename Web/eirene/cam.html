@@ -265,8 +265,10 @@
     const messageField = document.getElementById('status');
 
     // Get a reference to the database service
-    var database = firebase.database();
-
+    let database = firebase.database();
+    let nickname = ''
+    let login = false
+    
     btnLogin.addEventListener('click', e => {
         const email = txtEmail.value;
         const pass = txtPassword.value;
@@ -274,24 +276,34 @@
 
         const promise = auth.signInWithEmailAndPassword(email, pass);
 
-        promise.catch(e => {
+        promise
+            .then(function() {
+                login = true
+                firebase
+                    .database()
+                    .ref('user/')
+                    .on('value', (data) => {
+                    if (data.val()) {
+                        let dataObject = data.val();
+                        for (let idx in dataObject) {
+                            if(idx === email.split('@')[0]){
+                                nickname = dataObject[idx].nickname
+                                break;
+                            }
+                        }
+                    }
+                })
+            })
+            .catch(e => {
             if (e.message == "There is no user record corresponding to this identifier. The user may have been deleted.") {
                 alert("아이디나 비밀번호가 일치하지 않습니다.")
             } else if (e.message == "The email address is badly formatted.") {
                 alert("아이디를 이메일 형식으로 입력해주세요.")
+            } else {
+                
             }
         });
     });
-
-    // btnSignUp.addEventListener('click', e => {
-    //     const email = txtEmail.value;
-    //     const pass = txtPassword.value;
-    //     const auth = firebase.auth();
-
-    //     const promise = auth.createUserWithEmailAndPassword(email, pass);
-
-    //     promise.catch(e => console.log(e.message));
-    // });
 
     btnLogout.addEventListener('click', e => {
         firebase.auth().signOut();
@@ -307,14 +319,11 @@
         } else {
             $('#login').show();
             $('#logout').hide();
-            console.log('not logged in');
         }
     })
     // 저장
     function savedata(status) {
         let message = messageField;
-        if (message != "standard") {
-            database.ref('message/' + account).set({status});
-        }
+        database.ref('message/' + nickname).set({status, login});
     }
 </script>
