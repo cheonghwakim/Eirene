@@ -227,7 +227,7 @@
     <script src="./assets/js/mail-script.js"></script>
     <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
 
-    <!-- Jquery Plugins, main Jquery -->    
+    <!-- Jquery Plugins, main Jquery -->	
     <script src="./assets/js/plugins.js"></script>
     <script src="./assets/js/main.js"></script>
 </body>
@@ -268,8 +268,7 @@
     let database = firebase.database();
     let nickname = ''
     let login = false
-
-        
+    
     btnLogin.addEventListener('click', e => {
         const email = txtEmail.value;
         const pass = txtPassword.value;
@@ -278,7 +277,7 @@
         const promise = auth.signInWithEmailAndPassword(email, pass);
 
         promise
-            .then(snapshot => {
+            .then(function() {
                 login = true
                 firebase
                     .database()
@@ -296,12 +295,12 @@
                 })
             })
             .catch(e => {
-                if (e.message == "There is no user record corresponding to this identifier. The user may have been deleted.") {
-                    alert("아이디나 비밀번호가 일치하지 않습니다.")
-                } else if (e.message == "The email address is badly formatted.") {
-                    alert("아이디를 이메일 형식으로 입력해주세요.")
-                }
-            });
+            if (e.message == "There is no user record corresponding to this identifier. The user may have been deleted.") {
+                alert("아이디나 비밀번호가 일치하지 않습니다.")
+            } else if (e.message == "The email address is badly formatted.") {
+                alert("아이디를 이메일 형식으로 입력해주세요.")
+            } 
+        });
     });
 
     btnLogout.addEventListener('click', e => {
@@ -318,7 +317,6 @@
         } else {
             $('#login').show();
             $('#logout').hide();
-            console.log('not logged in');
         }
     })
     // 저장

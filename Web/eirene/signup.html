@@ -57,7 +57,7 @@
                                     <div class="col-lg-12 col-md-6">
                                         <div class="form-box email-icon mb-15">
                                             <input type="name" id="txtNickname" placeholder="Nickname">
-                                            <button id="NicknameCheck">중복체크</button>
+                                            <button id="NicknameCheck" class="btn">중복체크</button>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-6">
@@ -196,23 +196,23 @@
             .database()
             .ref('user/')
             .on('value', (data) => {
-                if (data.val()) {
-                    // console.log(data.val());
-                    let dataObject = data.val();
-                    // console.log('data.val[0]: ' + JSON.stringify(dataObject));
-                    for (let idx in dataObject) {
-                        console.log(dataObject[idx].nickname);
+            if (data.val()) {
+                // console.log(data.val());
+                let dataObject = data.val();
+                for (let idx in dataObject) {
+                    console.log(idx);
 
-                        if(dataObject[idx].nickname === nickname){
-                            isIn = true;
-                            alert("이미 사용중인 닉네임입니다.")
-                            break;
-                        }
+                    if(dataObject[idx].nickname === nickname){
+                        isIn = true;
+                        alert("이미 사용중인 닉네임입니다.")
+                        break;
+                    } else {
+                      isIn = false;
                     }
-
-                    if(!isIn)
-                        alert("사용 가능한 닉네임입니다.");
                 }
+                if(!isIn) 
+                    alert("사용 가능한 닉네임입니다.");
+            }
         })
     });
 
