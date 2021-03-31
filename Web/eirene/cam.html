@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="row" id="logout">
                                     <button type="button" onclick="init()" class="btn black-btn">Start</button>
-                                    <button id="btnLogout" class="btn btn-action">Log out</button>
+                                    <button id="btnLogout" class="btn btn-action mx-2">Log out</button>
                                 </div>
                             </form>
                         </div>
@@ -129,6 +129,7 @@
                                         const prediction = await model.predict(posenetOutput);
                                         if(prediction[0].probability.toFixed(2) == 1.00) {
                                             status = "stand"
+                                            savedata(status);
                                         } else if(prediction[1].probability.toFixed(2) == 1.00) {
                                             status = "view_left"
                                             savedata(status);
@@ -255,7 +256,6 @@
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
     // Get elements
     const txtEmail = document.getElementById('txtEmail');
     const txtPassword = document.getElementById('txtPassword');
