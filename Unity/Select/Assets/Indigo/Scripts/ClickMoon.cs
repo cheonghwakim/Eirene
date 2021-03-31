@@ -10,6 +10,8 @@ public class ClickMoon : MonoBehaviour
 
     public GameObject boat;
     public GameObject moon;
+    public GameObject light1;
+    public GameObject light2;
     public float moonDistance;
     public bool onClicked = false;
     // Start is called before the first frame update
@@ -25,6 +27,8 @@ public class ClickMoon : MonoBehaviour
         if (onClicked && moonDistance < 100)
         {
             moon.transform.position = moon.transform.position + upDirect * speed * Time.deltaTime;
+            light2.transform.position = light2.transform.position + upDirect * speed * Time.deltaTime;
+            light1.transform.position = light1.transform.position + upDirect * speed * Time.deltaTime;
         }
     }
     public void OnClickItem()
