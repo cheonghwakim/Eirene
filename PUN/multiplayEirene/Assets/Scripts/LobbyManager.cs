@@ -15,13 +15,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings(); // master 서버에 접속 시도
 
         joinButton.interactable = false; // 일단 접속버튼 잠시 비활성화
-        connectionInfoText.text = "Master Server에 접속하는 중입니다...";
+        connectionInfoText.text = "Connecting To Master Server...";
     }
     
     public override void OnConnectedToMaster()
     {
         joinButton.interactable = true;
-        connectionInfoText.text = "Online : Master Server에 연결 완료";
+        connectionInfoText.text = "Online : Connected to Master Server";
     }
     
     public override void OnDisconnected(DisconnectCause cause)
@@ -38,7 +38,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         if(PhotonNetwork.IsConnected)
         {
-            connectionInfoText.text = "Room에 연결하는 중입니다...";
+            connectionInfoText.text = "Connecting to Random Room...";
             PhotonNetwork.JoinRandomRoom(); // 참가할 수 있는 빈자리 있다면 이동
         }
         else 
@@ -51,13 +51,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        connectionInfoText.text = "빈 서버가 없습니다. 서버를 새로 만드는 중입니다.";
+        connectionInfoText.text = "There is no empty room, Creating new Room.";
         PhotonNetwork.CreateRoom(null, new RoomOptions {MaxPlayers = 20}); // 새로운 룸 만들기 (최대 20명)
     }
     
     public override void OnJoinedRoom() // 빈 방으로 참가완료했을 때
     {
-        connectionInfoText.text = "맵에 참가 완료.";
+        connectionInfoText.text = "Connected with Room.";
         // SceneManager.LoadScene(); // 동기화가 되지 않고 독자적으로 main으로 이동하게 됨 (나만 main으로 이동)
         PhotonNetwork.LoadLevel("chill"); // 방을 만든 방장이 실행하게 되면 모든 유저가 같은 씬이 로드됨 (동기화가 자동으로 됨)
     
