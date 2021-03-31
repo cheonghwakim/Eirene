@@ -1,5 +1,0 @@
-librosa == 0.6.3
-unidecode == 1.1.1
-inflect == 4.1.0
-tqdm == 4.48.2
-numba == 0.48
