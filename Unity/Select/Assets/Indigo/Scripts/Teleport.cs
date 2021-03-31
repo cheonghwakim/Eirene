@@ -9,6 +9,8 @@ public class Teleport : MonoBehaviour
     public float jamDistance;
     public float rotationSpeed = 40.0f;
 
+    private Vector3 offset = new Vector3(0, 0.2f, 0);
+
     // Start is called before the first frame update
     void Start()
     {
