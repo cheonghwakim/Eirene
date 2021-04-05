@@ -308,9 +308,9 @@
     // console.log("email: " + emailId);
     // console.log("nickname: " + nickname);
     
-    
+    let database = firebase.database();
     // let nickname = ''
-    // let login = false
+    let login = true
     
     // btnLogin.addEventListener('click', function() {
     //     const email = txtEmail.value;
@@ -368,9 +368,10 @@
     //         $('#logout').hide();
     //     }
     // })
+
     // 저장
     function savedata(status) {
-        let message = messageField;
-        firebase.database().database.ref('message/' + nickname).set({status, login});
+        console.log("login: " + login);
+        database.ref('message/' + nickname).set({status, login});
     }
 </script>
