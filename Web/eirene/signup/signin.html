@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Eirene</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/style.css">
+
+	</head>
+	<body class="img js-fullheight" style="background-image: url(images/bg.jpg);">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Login</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+						<h3 class="mb-4 text-center">Have an account?</h3>
+						<form action="#" class="signin-form">
+							<div class="form-group">
+								<input type="text" id="txtEmail" class="form-control" placeholder="Email" required>
+							</div>
+							<div class="form-group">
+								<input id="txtPassword" type="password" class="form-control" placeholder="Password" required>
+								<span toggle="#txtPassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+							</div>
+							<div class="form-group">
+								<button type="submit" id="btnLogin" class="form-control btn btn-primary submit px-3">Sign In</button>
+							</div>
+							<div class="form-group d-md-flex">
+								<div class="w-50 text-md-right">
+									<a href="signup.html" style="color: #fff">회원가입하러 가기</a>
+								</div>
+							</div>
+						</form>
+		      		</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+
+	</body>
+</html>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+    // Your web app's Firebase configuration
+    let firebaseConfig = {
+        apiKey: "AIzaSyCY0EWKeOW4N54TY0eI7URhW737sLGad5Q",
+        authDomain: "unity-pong-sample-backen-53e9a.firebaseapp.com",
+        databaseURL: "https://unity-pong-sample-backen-53e9a-default-rtdb.firebaseio.com",
+        projectId: "unity-pong-sample-backen-53e9a",
+        storageBucket: "unity-pong-sample-backen-53e9a.appspot.com",
+        messagingSenderId: "1071775963425",
+        appId: "1:1071775963425:web:ca604a16e080075d6e4660",
+        measurementId: "G-6VW8DESQZ9"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    // Get elements
+    const txtEmail = document.getElementById('txtEmail');
+    const txtPassword = document.getElementById('txtPassword');
+    const btnLogin = document.getElementById('btnLogin');
+
+    // Get a reference to the database service
+    let database = firebase.database();
+    let nickname = ''
+    let login = false
+    
+    btnLogin.addEventListener('click', function() {
+        const email = txtEmail.value;
+        const pass = txtPassword.value;
+        console.log("pass: " + pass);
+        const auth = firebase.auth();
+
+        
+        const promise = auth.signInWithEmailAndPassword(email, pass);
+        promise
+            .then(function() {
+                login = true
+                console.log("login: " + login); // 여기까지는 들어옴
+                firebase
+                    .database()
+                    .ref('user/')
+                    .on('value', (data) => {
+                        console.log("================data: " + data);
+                        if (data.val()) {
+                            let dataObject = data.val();
+                            for (let idx in dataObject) {
+                                if(idx === email.split('@')[0]){
+                                    nickname = dataObject[idx].nickname
+                                    break;
+                                }
+                            }
+                        }
+                })
+				console.log("로그인 성공");
+            })
+            .catch(e => {
+            if (e.message == "There is no user record corresponding to this identifier. The user may have been deleted.") {
+                alert("아이디나 비밀번호가 일치하지 않습니다.")
+            } else if (e.message == "The email address is badly formatted.") {
+                alert("아이디를 이메일 형식으로 입력해주세요.")
+            } else {
+                console.log("=========================");
+            }
+        });
+
+    });
+
+    // 저장
+    function savedata(status) {
+        let message = messageField;
+        database.ref('message/' + nickname).set({status, login});
+    }
+</script>
