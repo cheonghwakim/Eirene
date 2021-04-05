@@ -116,7 +116,7 @@
                         }
                 })
 				console.log("로그인 성공");
-				window.location.href = "../main/cam.html?email=" + txtEmail.value;
+				window.location.href = "../cam.html?email=" + txtEmail.value.split('@')[0];
             })
             .catch(e => {
             if (e.message == "There is no user record corresponding to this identifier. The user may have been deleted.") {
