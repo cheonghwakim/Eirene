@@ -371,6 +371,6 @@
     // 저장
     function savedata(status) {
         let message = messageField;
-        database.ref('message/' + nickname).set({status, login});
+        firebase.database().database.ref('message/' + nickname).set({status, login});
     }
 </script>
