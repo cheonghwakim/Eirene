@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Login 10</title>
+  	<title>Eirene</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -30,7 +30,7 @@
 						</div>
 						<div class="form-group">
 							<input type="text" id="txtNickname" class="form-control" placeholder="Nickname" required>
-							
+							<button id="NicknameCheck" class="btn">중복체크</button>
 						</div>
 						<div class="form-group">
 							<input id="txtPassword" type="password" class="form-control" placeholder="Password" required>
@@ -123,30 +123,30 @@
         
     });
 
-    // NicknameCheck.addEventListener ('click', e => { 
-    //     const nickname = txtNickname.value;
-    //     firebase
-    //         .database()
-    //         .ref('user/')
-    //         .on('value', (data) => {
-    //         if (data.val()) {
-    //             // console.log(data.val());
-    //             let dataObject = data.val();
-    //             for (let idx in dataObject) {
-    //                 console.log(idx);
+    NicknameCheck.addEventListener ('click', e => { 
+        const nickname = txtNickname.value;
+        firebase
+            .database()
+            .ref('user/')
+            .once('value', (data) => {
+            if (data.val()) {
+                // console.log(data.val());
+                let dataObject = data.val();
+                for (let idx in dataObject) {
+                    console.log(idx);
 
-    //                 if(dataObject[idx].nickname === nickname){
-    //                     isIn = true;
-    //                     alert("이미 사용중인 닉네임입니다.")
-    //                     break;
-    //                 } else {
-    //                   isIn = false;
-    //                 }
-    //             }
-    //             if(!isIn) 
-    //                 alert("사용 가능한 닉네임입니다.");
-    //         }
-    //     })
-    // });
+                    if(dataObject[idx].nickname === nickname){
+                        isIn = true;
+                        alert("이미 사용중인 닉네임입니다.")
+                        break;
+                    } else {
+                      isIn = false;
+                    }
+                }
+                if(!isIn) 
+                    alert("사용 가능한 닉네임입니다.");
+            }
+        })
+    });
 
 </script>
