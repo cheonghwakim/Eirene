@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <button id="btnLogin" class="btn btn-action">Login</button>
-                                        <a href="signup.html" class="btn btn-action">SignUp</a>
+                                        <a href="../signup/index.html" class="btn btn-action">SignUp</a>
                                     </div>
                                 </div>
                                 <div class="row" id="logout">
@@ -269,29 +269,32 @@
     let nickname = ''
     let login = false
     
-    btnLogin.addEventListener('click', e => {
+    btnLogin.addEventListener('click', function() {
         const email = txtEmail.value;
         const pass = txtPassword.value;
+        console.log("pass: " + pass);
         const auth = firebase.auth();
 
+        
         const promise = auth.signInWithEmailAndPassword(email, pass);
-
         promise
             .then(function() {
                 login = true
+                console.log("login: " + login); // 여기까지는 들어옴
                 firebase
                     .database()
                     .ref('user/')
                     .on('value', (data) => {
-                    if (data.val()) {
-                        let dataObject = data.val();
-                        for (let idx in dataObject) {
-                            if(idx === email.split('@')[0]){
-                                nickname = dataObject[idx].nickname
-                                break;
+                        console.log("================data: " + data);
+                        if (data.val()) {
+                            let dataObject = data.val();
+                            for (let idx in dataObject) {
+                                if(idx === email.split('@')[0]){
+                                    nickname = dataObject[idx].nickname
+                                    break;
+                                }
                             }
                         }
-                    }
                 })
             })
             .catch(e => {
@@ -299,8 +302,11 @@
                 alert("아이디나 비밀번호가 일치하지 않습니다.")
             } else if (e.message == "The email address is badly formatted.") {
                 alert("아이디를 이메일 형식으로 입력해주세요.")
-            } 
+            } else {
+                console.log("=========================");
+            }
         });
+
     });
 
     btnLogout.addEventListener('click', e => {
