@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Eirene</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/style.css">
+
+	</head>
+	<body class="img js-fullheight" style="background-image: url(images/fantasy_dark.jpg);">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Sign Up</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+					<h3 class="mb-4 text-center">Have No account?</h3>
+					<form action="#" class="signin-form">
+						<div class="form-group">
+							<input type="email" id="txtEmail" class="form-control" placeholder="Email" required>
+						</div>
+						<div class="form-group">
+							<input type="text" id="txtNickname" class="form-control" placeholder="Nickname" required>
+							<button id="NicknameCheck" class="btn btn-primary px-3">닉네임 중복체크</button>
+						</div>
+						<div class="form-group">
+							<input id="txtPassword" type="password" class="form-control" placeholder="Password" required>
+							<span toggle="#txtPassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+						</div>
+						<div class="form-group">
+							<button type="submit" id="btnSignUp" class="form-control btn btn-primary submit px-3">Sign Up</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+
+	</body>
+</html>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+    // Your web app's Firebase configuration
+    let firebaseConfig = {
+        apiKey: "AIzaSyCY0EWKeOW4N54TY0eI7URhW737sLGad5Q",
+        authDomain: "unity-pong-sample-backen-53e9a.firebaseapp.com",
+        databaseURL: "https://unity-pong-sample-backen-53e9a-default-rtdb.firebaseio.com",
+        projectId: "unity-pong-sample-backen-53e9a",
+        storageBucket: "unity-pong-sample-backen-53e9a.appspot.com",
+        messagingSenderId: "1071775963425",
+        appId: "1:1071775963425:web:ca604a16e080075d6e4660",
+        measurementId: "G-6VW8DESQZ9"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Get elements
+    const txtEmail = document.getElementById('txtEmail');
+    const txtPassword = document.getElementById('txtPassword');
+    const txtNickname = document.getElementById('txtNickname');
+    const btnSignUp = document.getElementById('btnSignUp');
+    const NicknameCheck = document.getElementById('NicknameCheck');
+
+    // Get a reference to the database service
+    // var database = firebase.database();
+
+    let isIn = false;
+
+    btnSignUp.addEventListener('click', e => {        
+        console.log(isIn);
+        const email = txtEmail.value;
+        const nickname = txtNickname.value;
+        const pass = txtPassword.value;
+        const auth = firebase.auth();
+
+        const account = email.split('@')[0];
+        const promise = auth.createUserWithEmailAndPassword(email, pass);
+        if (!isIn) {
+          promise
+            .then(function() { 
+                console.log("sadfasdfasdf");
+                alert("회원가입이 완료되었습니다.")
+				window.location.href = "../main/cam.html?email=" + txtEmail.value;
+            })
+            .catch(e => {
+                if (e.message == "The password must be 6 characters long or more.") {
+                    alert("비밀번호는 6자리 이상으로 만드세요.")
+                } else if (e.message == "The email address is already in use by another account.") {
+                    alert("이미 사용중인 아이디입니다.")
+                }
+            })
+            firebase
+                .database()
+                .ref('user/' + account)
+				.set({nickname});
+            console.log("=====================");
+        } else {
+            console.log("??!?");
+            alert("이미 사용중인 닉네임입니다.")
+        };
+        
+        
+    });
+
+    NicknameCheck.addEventListener ('click', e => { 
+        const nickname = txtNickname.value;
+        firebase
+            .database()
+            .ref('user/')
+            .once('value', (data) => {
+            if (data.val()) {
+                // console.log(data.val());
+                let dataObject = data.val();
+                for (let idx in dataObject) {
+                    console.log(idx);
+
+                    if(dataObject[idx].nickname === nickname){
+                        isIn = true;
+                        alert("이미 사용중인 닉네임입니다.")
+                        break;
+                    } else {
+                      isIn = false;
+                    }
+                }
+                if(!isIn) 
+                    alert("사용 가능한 닉네임입니다.");
+            }
+        })
+    });
+
+</script>
