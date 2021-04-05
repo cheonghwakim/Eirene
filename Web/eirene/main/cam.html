@@ -46,7 +46,7 @@
                             <!-- Section Tittle -->
                             <div class="section-tittle mb-35">
                                 <h2>에이레네<br> Εἰρήνη</h2>
-                                <h4>email 님 안녕하세요</h4>
+                                <div id="emailId"></div>
                             </div>
                             <form id="contact-form" action="#">
                                 <div class="row" id="login">
@@ -257,10 +257,12 @@
         return _parammap[key];
     };
  
-    alert("email : " + getParam("email"));  // a
+    const email = document.getElementById('emailId');
+    // alert("email : " + getParam("email"));  // a
+    email.innerHTML = getParam("email") + "님, 안녕하세요";
     ///////
 
-    
+
     // Your web app's Firebase configuration
     let firebaseConfig = {
         apiKey: "AIzaSyCY0EWKeOW4N54TY0eI7URhW737sLGad5Q",
