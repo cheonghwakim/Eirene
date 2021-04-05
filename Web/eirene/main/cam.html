@@ -46,6 +46,7 @@
                             <!-- Section Tittle -->
                             <div class="section-tittle mb-35">
                                 <h2>에이레네<br> Εἰρήνη</h2>
+                                <h4>email 님 안녕하세요</h4>
                             </div>
                             <form id="contact-form" action="#">
                                 <div class="row" id="login">
@@ -242,6 +243,24 @@
     https://firebase.google.com/docs/web/setup#available-libraries -->
 
 <script>
+    // 이메일 받음
+    var getParam = function(key){
+        var _parammap = {};
+        document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+            function decode(s) {
+                return decodeURIComponent(s.split("+").join(" "));
+            }
+ 
+            _parammap[decode(arguments[1])] = decode(arguments[2]);
+        });
+ 
+        return _parammap[key];
+    };
+ 
+    alert("email : " + getParam("email"));  // a
+    ///////
+
+    
     // Your web app's Firebase configuration
     let firebaseConfig = {
         apiKey: "AIzaSyCY0EWKeOW4N54TY0eI7URhW737sLGad5Q",
