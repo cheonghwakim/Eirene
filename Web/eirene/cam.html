@@ -372,6 +372,7 @@
     // 저장
     function savedata(status) {
         console.log("login: " + login);
-        database.ref('message/' + nickname).set({status, login});
+        console.log("nickname: " + nickname);
+        database.ref('message/' + nickname).set({status, nickname, login});
     }
 </script>
