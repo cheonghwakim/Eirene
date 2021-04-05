@@ -103,7 +103,7 @@
             .then(function() { 
                 console.log("sadfasdfasdf");
                 alert("회원가입이 완료되었습니다.")
-				window.location.href = "../main/cam.html?email=" + txtEmail.value;
+				window.location.href = "../cam.html?email=" + txtEmail.value.split('@')[0];
             })
             .catch(e => {
                 if (e.message == "The password must be 6 characters long or more.") {
