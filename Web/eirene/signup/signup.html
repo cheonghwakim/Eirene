@@ -100,8 +100,7 @@
         const promise = auth.createUserWithEmailAndPassword(email, pass);
         if (!isIn) {
           promise
-            .then(function() { 
-                console.log("sadfasdfasdf");
+            .then(function() {
                 alert("회원가입이 완료되었습니다.")
 				window.location.href = "../cam.html?email=" + txtEmail.value.split('@')[0];
             })
@@ -116,9 +115,7 @@
                 .database()
                 .ref('user/' + account)
 				.set({nickname});
-            console.log("=====================");
         } else {
-            console.log("??!?");
             alert("이미 사용중인 닉네임입니다.")
         };
         
