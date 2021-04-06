@@ -241,7 +241,8 @@
           <h2>업데이트 예정</h2>
           <p>설명</p>
           <p class="pera-bottom">상세설명</p>
-          <a href="./signup/signin.html?#" class="btn black-btn">웹캠(로그인)</a>
+          <!-- <a href="./signup/signin.html?#" class="btn black-btn">웹캠(로그인)</a> -->
+          <button type="button" id="btnStart" class="btn black-btn">웹캠(로그인)</button>
         </div>
       </div>
       <section
@@ -435,3 +436,16 @@
     <script src="./assets/js/main.js"></script>
   </body>
 </html>
+
+<script>
+
+  const btnStart = document.getElementById('btnStart');
+  
+  btnStart.addEventListener('click', function() {
+      if(sessionStorage.getItem("email") != null)
+        window.location.href = "./cam.html?#";
+      else
+        window.location.href = "signup/signin.html?#";
+  });
+
+</script>
