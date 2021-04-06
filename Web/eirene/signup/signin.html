@@ -91,7 +91,6 @@
     btnLogin.addEventListener('click', function() {
         const email = txtEmail.value;
         const pass = txtPassword.value;
-        console.log("pass: " + pass);
         const auth = firebase.auth();
 
         
@@ -104,19 +103,21 @@
                     .database()
                     .ref('user/')
                     .on('value', (data) => {
-                        console.log("================data: " + data);
                         if (data.val()) {
                             let dataObject = data.val();
                             for (let idx in dataObject) {
                                 if(idx === email.split('@')[0]){
                                     nickname = dataObject[idx].nickname
+                                    sessionStorage.setItem("nickname", nickname);
                                     break;
                                 }
                             }
                         }
                 })
 				console.log("로그인 성공");
-				window.location.href = "../cam.html?email=" + txtEmail.value.split('@')[0];
+				
+                sessionStorage.setItem("email", txtEmail.value.split('@')[0]);
+                window.location.href = "../cam.html?#";
             })
             .catch(e => {
             if (e.message == "There is no user record corresponding to this identifier. The user may have been deleted.") {
@@ -129,4 +130,5 @@
         });
 
     });
+
 </script>
