@@ -102,7 +102,9 @@
           promise
             .then(function() {
                 alert("회원가입이 완료되었습니다.")
-				window.location.href = "../cam.html?email=" + txtEmail.value.split('@')[0];
+                sessionStorage.setItem("email", txtEmail.value.split('@')[0]);
+                sessionStorage.setItem("nickname", txtNickname.value);
+				window.location.href = "cam/cam.html?#";
             })
             .catch(e => {
                 if (e.message == "The password must be 6 characters long or more.") {
