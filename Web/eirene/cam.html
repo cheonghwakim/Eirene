@@ -276,13 +276,15 @@
 
     btnLogout.addEventListener('click', function() {
         login = false
-        console.log("login: " + login);
-        sessionStorage.removeItem("email");
-        console.log("login, nickname: " + login + " " + nickname);
-        database.ref('user/' + nickname).set({status, nickname, login});
+        // sessionStorage.removeItem("email");
+        // sessionStorage.removeItem("nickname");
+        console.log(login)
         const promise = firebase.auth().signOut();
         promise
             .then(function() {
+                database
+                    .ref('user/' + nickname)
+                    .set({status, nickname, login});
                 window.location.href = "./index.html";
             })
     })
@@ -290,8 +292,6 @@
 
     // 저장
     function savedata(status) {
-        // console.log("login: " + login);
-        // console.log("nickname: " + nickname);
         database.ref('user/' + nickname).set({status, nickname, login});
     }
 </script>
