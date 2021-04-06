@@ -112,37 +112,35 @@
                                         const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
                                         // Prediction 2: run input through teachable machine classification model
                                         const prediction = await model.predict(posenetOutput);
-                                        if(prediction[0].probability.toFixed(2) == 1.00) {
+                                        if(prediction[0].probability.toFixed(2) == 1.00 || prediction[1].probability.toFixed(2) == 1.00) {
                                             status = "stand"
                                             savedata(status);
-                                        } else if(prediction[1].probability.toFixed(2) == 1.00) {
+                                        } else if(prediction[2].probability.toFixed(2) == 1.00 || prediction[3].probability.toFixed(2) == 1.00) {
                                             status = "view_left"
                                             savedata(status);
-                                        } else if(prediction[2].probability.toFixed(2) == 1.00) {
+                                        } else if(prediction[4].probability.toFixed(2) == 1.00 || prediction[5].probability.toFixed(2) == 1.00) {
                                             status = "view_right"
                                             savedata(status);
-                                        } else if(prediction[3].probability.toFixed(2) == 1.00) {
+                                        } else if(prediction[6].probability.toFixed(2) == 1.00 || prediction[7].probability.toFixed(2) == 1.00) {
                                             status = "clap"
                                             savedata(status);
-                                        } else if(prediction[4].probability.toFixed(2) == 1.00) {
-                                            status = "hurry"
+                                        } else if(prediction[8].probability.toFixed(2) == 1.00 || prediction[9].probability.toFixed(2) == 1.00 || prediction[10].probability.toFixed(2) == 1.00 || prediction[11].probability.toFixed(2) == 1.00) {
+                                            status = "hand"
                                             savedata(status);
-                                        } else if(prediction[5].probability.toFixed(2) == 1.00) {
+                                        } else if(prediction[12].probability.toFixed(2) == 1.00) {
                                             status = "rowing"
                                             savedata(status);
-                                        } else if(prediction[6].probability.toFixed(2) == 1.00) {
-                                            status = "hand"
+                                        } else if(prediction[13].probability.toFixed(2) == 1.00) {
+                                            status = "hurry"
                                             savedata(status);
-                                        } else if(prediction[7].probability.toFixed(2) == 1.00) {
-                                            status = "hand"
+                                        } else if(prediction[14].probability.toFixed(2) == 1.00) {
+                                            status = "meditation"
                                             savedata(status);
-                                        } else if(prediction[8].probability.toFixed(2) == 1.00) {
-                                            status = "say_hi"
-                                            savedata(status);
-                                        } else if(prediction[9].probability.toFixed(2) == 1.00) {
-                                            status = "say_hi"
+                                        } else {
+                                            status = "stand"
                                             savedata(status);
                                         }
+                                        
                                         for (let i = 0; i < maxPredictions; i++) {
                                             const classPrediction =
                                                 prediction[i].className + ": " + prediction[i].probability.toFixed(2);
