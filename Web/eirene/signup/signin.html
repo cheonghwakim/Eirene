@@ -91,10 +91,8 @@
     btnLogin.addEventListener('click', function() {
         const email = txtEmail.value;
         const pass = txtPassword.value;
-        console.log("pass: " + pass);
         const auth = firebase.auth();
 
-        
         const promise = auth.signInWithEmailAndPassword(email, pass);
         promise
             .then(function() {
@@ -103,30 +101,35 @@
                 firebase
                     .database()
                     .ref('user/')
-                    .on('value', (data) => {
-                        console.log("================data: " + data);
+                    .once('value', (data) => {
                         if (data.val()) {
                             let dataObject = data.val();
                             for (let idx in dataObject) {
                                 if(idx === email.split('@')[0]){
                                     nickname = dataObject[idx].nickname
+                                    sessionStorage.setItem("nickname", nickname);
+                                    console.log(nickname)
                                     break;
                                 }
                             }
                         }
+                        sessionStorage.setItem("email", txtEmail.value.split('@')[0]);
+                        window.location.href = "../cam.html?#";
                 })
 				console.log("로그인 성공");
-				window.location.href = "../cam.html?email=" + txtEmail.value.split('@')[0];
+				
+                
             })
             .catch(e => {
-            if (e.message == "There is no user record corresponding to this identifier. The user may have been deleted.") {
-                alert("아이디나 비밀번호가 일치하지 않습니다.")
-            } else if (e.message == "The email address is badly formatted.") {
-                alert("아이디를 이메일 형식으로 입력해주세요.")
-            } else {
-                console.log("=========================");
-            }
-        });
+                if (e.message == "There is no user record corresponding to this identifier. The user may have been deleted.") {
+                    alert("아이디나 비밀번호가 일치하지 않습니다.")
+                } else if (e.message == "The email address is badly formatted.") {
+                    alert("아이디를 이메일 형식으로 입력해주세요.")
+                } else {
+                    console.log(e.message);
+                }
+            });
 
     });
+
 </script>

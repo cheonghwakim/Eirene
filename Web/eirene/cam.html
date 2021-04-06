@@ -49,22 +49,6 @@
                                 <div id="emailId"></div>
                             </div>
                             <form id="contact-form" action="#">
-                                <!-- <div class="row" id="login">
-                                    <div class="col-lg-12 col-md-6">
-                                        <div class="form-box email-icon mb-15">
-                                            <input type="email" id="txtEmail" placeholder="Email">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-6">
-                                        <div class="form-box email-icon mb-15">
-                                            <input type="password" id="txtPassword" placeholder="Password">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-6">
-                                        <a href="./signup/signin.html" class="btn btn-action">SignUp</a>
-                                        <a href="./signup/signup.html" class="btn btn-action">SignUp</a>
-                                    </div>
-                                </div> -->
                                 <div class="row" id="logout">
                                     <button type="button" onclick="init()" class="btn black-btn">Start</button>
                                     <button id="btnLogout" class="btn btn-action mx-2">Log out</button>
@@ -238,31 +222,15 @@
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> --> <!-- 에러나서 일단 지움 -->
+
 <!-- TODO: Add SDKs for Firebase products that you want to use
     https://firebase.google.com/docs/web/setup#available-libraries -->
 
-<script>
-    // 이메일 받음
-    var getParam = function(key){
-        var _parammap = {};
-        document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
-            function decode(s) {
-                return decodeURIComponent(s.split("+").join(" "));
-            }
- 
-            _parammap[decode(arguments[1])] = decode(arguments[2]);
-        });
- 
-        return _parammap[key];
-    };
- 
+<script>  
     const email = document.getElementById('emailId');
-    // alert("email : " + getParam("email"));  // a
-    email.innerHTML = getParam("email") + "님, 안녕하세요";
-    ///////
-
-    const emailId = getParam("email");
+    email.innerHTML = sessionStorage.getItem("nickname") + "님, 안녕하세요";
+    const emailId = sessionStorage.getItem("email");
 
     // Your web app's Firebase configuration
     let firebaseConfig = {
@@ -281,98 +249,33 @@
     // Get elements
     const txtEmail = document.getElementById('txtEmail');
     const txtPassword = document.getElementById('txtPassword');
-    // const btnLogin = document.getElementById('btnLogin');
-    // const btnSignUp = document.getElementById('btnSignUp');
     const btnLogout = document.getElementById('btnLogout');
     const messageField = document.getElementById('status');
 
     // Get a reference to the database service
-    var nickname = ''
-    firebase
-        .database()
-        .ref('user/')
-        .on('value', (data) => {
-            console.log("================data: " + data);
-            if (data.val()) {
-                let dataObject = data.val();
-                for (let idx in dataObject) {
-                    if(idx === emailId){
-                        nickname = dataObject[idx].nickname
-                        console.log('??!??!?!?!?!??!' + nickname);
-                        break;
-                    }
-                }
-            }
-        });
-    
-    // console.log("email: " + emailId);
-    // console.log("nickname: " + nickname);
+    const nickname = sessionStorage.getItem("nickname");
     
     let database = firebase.database();
-    // let nickname = ''
     let login = true
-    
-    // btnLogin.addEventListener('click', function() {
-    //     const email = txtEmail.value;
-    //     const pass = txtPassword.value;
-    //     console.log("pass: " + pass);
-    //     const auth = firebase.auth();
 
-        
-    //     const promise = auth.signInWithEmailAndPassword(email, pass);
-    //     promise
-    //         .then(function() {
-    //             login = true
-    //             console.log("login: " + login); // 여기까지는 들어옴
-    //             firebase
-    //                 .database()
-    //                 .ref('user/')
-    //                 .on('value', (data) => {
-    //                     console.log("================data: " + data);
-    //                     if (data.val()) {
-    //                         let dataObject = data.val();
-    //                         for (let idx in dataObject) {
-    //                             if(idx === email.split('@')[0]){
-    //                                 nickname = dataObject[idx].nickname
-    //                                 break;
-    //                             }
-    //                         }
-    //                     }
-    //             })
-    //         })
-    //         .catch(e => {
-    //         if (e.message == "There is no user record corresponding to this identifier. The user may have been deleted.") {
-    //             alert("아이디나 비밀번호가 일치하지 않습니다.")
-    //         } else if (e.message == "The email address is badly formatted.") {
-    //             alert("아이디를 이메일 형식으로 입력해주세요.")
-    //         } else {
-    //             console.log("=========================");
-    //         }
-    //     });
+    btnLogout.addEventListener('click', function() {
 
-    // });
-
-    btnLogout.addEventListener('click', e => {
-        firebase.auth().signOut();
+        login = false
+        sessionStorage.removeItem("email");
+        sessionStorage.removeItem("nickname");
+        console.log(login);
+        firebase.auth().signOut();        
+        database
+            .ref('user/' + emailId)
+            .set({status, nickname, login})
+            .then(function() {
+                window.location.href = "./index.html";
+            });
     })
 
-    // let account = ''
-    // firebase.auth().onAuthStateChanged(firebaseUser => {
-    //     if(firebaseUser) {
-    //         // console.log(firebaseUser);
-    //         $('#login').hide();
-    //         $('#logout').show();
-    //         account = firebaseUser.email.split('@')[0];
-    //     } else {
-    //         $('#login').show();
-    //         $('#logout').hide();
-    //     }
-    // })
 
     // 저장
     function savedata(status) {
-        console.log("login: " + login);
-        console.log("nickname: " + nickname);
-        database.ref('message/' + nickname).set({status, nickname, login});
+        database.ref('user/' + emailId).set({status, nickname, login});
     }
 </script>
