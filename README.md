@@ -1,10 +1,10 @@
 # TEAM 401
 
-> [Εἰρήνη (Eirene)](http://j4a401.p.ssafy.io/)🦌
+> [Εἰρήνη (Eirene)](http://j4a401.p.ssafy.io/)🦌 
 >
 > 에이레네(그리스어: Εἰρήνη , 에이리니, 라틴어: Eirene)는 그리스 신화에 등장하는 평화의 여신이다.
 
-![image](https://user-images.githubusercontent.com/43662673/125205446-43da2c00-e2bd-11eb-90c9-f07e270a53a9.png)
+<center><img src="https://user-images.githubusercontent.com/43662673/125205446-43da2c00-e2bd-11eb-90c9-f07e270a53a9.png" width="300" height="300"></center>
 
 ### Members 👨‍👩‍👦‍👦
 
@@ -99,7 +99,7 @@
 
   - Cardboard를 사용하여 플레이 가능합니다.
 
-  ![](Document/Images/cardboard.jpg)
+  ![](Document/Images/cardbord.jpg)
 
 
 
