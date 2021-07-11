@@ -4,11 +4,11 @@
 >
 > 에이레네(그리스어: Εἰρήνη , 에이리니, 라틴어: Eirene)는 그리스 신화에 등장하는 평화의 여신이다.
 
-![](Document/Images/logo.jpg)
+![image](https://user-images.githubusercontent.com/43662673/125205446-43da2c00-e2bd-11eb-90c9-f07e270a53a9.png)
 
 ### Members 👨‍👩‍👦‍👦
 
-![](Document/Images/members.PNG)
+![image](https://user-images.githubusercontent.com/43662673/125205450-4c326700-e2bd-11eb-8c79-f4dd6db873b6.png)
 
 ### Project Info
 
@@ -26,7 +26,7 @@
 
 - Tech Stack
 
-  ![](Document/Images/techstack.png)
+  ![image](https://user-images.githubusercontent.com/43662673/125205462-55bbcf00-e2bd-11eb-85ae-3602c827091c.png)
 
 - Map Detail
 
@@ -52,7 +52,7 @@
 
     - Blue 맵은 `바닷 속 난파선`으로 뛰어난 통찰력을 가지고 있고 어려운 일을 수월하게 해내는 기질을 가진 사람들을 위해 퀴즈를 풀어 보상을 얻을 수 있는 인터렉션을 배치하였다.
 
-    ![](Document/Images/blue.png)
+    ![image](https://user-images.githubusercontent.com/43662673/125205469-5fddcd80-e2bd-11eb-9153-109f72827b9d.png)
 
   - Navy
 
@@ -64,25 +64,25 @@
 
     - Purple 맵은 `거울 호수`로 신비함과 정신적 세계에 관심이 많은 사람들에게 신비로운 경험을 할 수 있는 인터렉션을 배치하여 흥미를 주도록 하였다.
 
-    ![](Document/Images/purple.png)
+    ![image](https://user-images.githubusercontent.com/43662673/125205477-679d7200-e2bd-11eb-950a-9add8c2fbf42.png)
 
   - Pink
 
     - Pink 맵은 `벚꽃 사막`으로 분홍 빛 사막 속 벚꽃을 배치하여 행동에 따라 신비롭고 편안함을 주는 인터렉션을 배치하여 타인에게 에너지를 쓰는 기질의 사람들에게 휴식의 느낌을 주도록 하였다.  
 
-    ![](Document/Images/pink.gif)
+    ![image](https://user-images.githubusercontent.com/43662673/125205488-72f09d80-e2bd-11eb-8136-65b99b385199.png)
 
 - Multibus
 
   - 멀티버스 맵에서 다른 유저와 멀티플레이 가능
 
-    ![](https://eirenebucket.s3.ap-northeast-2.amazonaws.com/multi3.gif)
+    ![image](https://user-images.githubusercontent.com/43662673/125205502-813eb980-e2bd-11eb-9043-a9e2485ea023.png)
 
 #### Usage
 
 - Apk 파일 설치
 
-  ![](Document/Images/setting.jpg)
+  ![image](https://user-images.githubusercontent.com/43662673/125205506-8996f480-e2bd-11eb-82de-4085a9af59fb.png)
 
   1. 설정에서 애플리케이션을 선택합니다.
   2. 에이레네 선택 후 권한 탭으로 이동합니다.
@@ -93,14 +93,13 @@
 
   - Webcam을 사용하여 모션 인식 인터렉션을 사용할 수 있습니다.
 
-  ![](Document/Images/webcam.PNG)
+  ![image](https://user-images.githubusercontent.com/43662673/125205516-90256c00-e2bd-11eb-8751-9a4a5854a8e9.png)
 
 - Google Cardboard
 
   - Cardboard를 사용하여 플레이 가능합니다.
 
-  ![](Document/Images/cardbord.jpg)
-
+  ![image](https://user-images.githubusercontent.com/43662673/125205549-c4992800-e2bd-11eb-8379-e4582e447f2c.png)
 
 
 
