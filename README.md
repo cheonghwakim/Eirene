@@ -70,13 +70,13 @@
 
     - Pink 맵은 `벚꽃 사막`으로 분홍 빛 사막 속 벚꽃을 배치하여 행동에 따라 신비롭고 편안함을 주는 인터렉션을 배치하여 타인에게 에너지를 쓰는 기질의 사람들에게 휴식의 느낌을 주도록 하였다.  
 
-    ![image](https://user-images.githubusercontent.com/43662673/125205488-72f09d80-e2bd-11eb-8136-65b99b385199.png)
+    ![](Document/Images/pink.gif)
 
 - Multibus
 
   - 멀티버스 맵에서 다른 유저와 멀티플레이 가능
 
-    ![image](https://user-images.githubusercontent.com/43662673/125205502-813eb980-e2bd-11eb-9043-a9e2485ea023.png)
+    ![](Document/Images/multi3.gif)
 
 #### Usage
 
@@ -99,7 +99,7 @@
 
   - Cardboard를 사용하여 플레이 가능합니다.
 
-  ![image](https://user-images.githubusercontent.com/43662673/125205549-c4992800-e2bd-11eb-8379-e4582e447f2c.png)
+  ![](Document/Images/cardboard.jpg)
 
 
 
